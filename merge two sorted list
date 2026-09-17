@@ -1,0 +1,34 @@
+class Solution {
+public:
+    ListNode* mergeTwoLists(ListNode* l1, ListNode* l2) {
+        ListNode dummy;
+        ListNode* tail = &dummy;
+
+        while(l1 && l2){
+            if(l1->val < l2->val){
+                tail->next = l1;
+                l1 = l1->next;
+            }
+            else{
+                tail->next = l2;
+                l2 = l2->next;
+            }
+            tail = tail->next;
+        }
+
+        tail->next = l1 ? l1 : l2;
+        return dummy.next;
+    }
+};
+**Intuition:**  
+Both linked lists are already sorted.  
+Compare their current nodes and always choose the smaller one.
+
+**Algorithm:**  
+Use a dummy node and move through both lists.  
+Attach the smaller node to the result until one list is empty.  
+Attach the remaining nodes at the end.
+
+**Complexity:**  
+Time: **O(n + m)**  
+Space: **O(1)**
