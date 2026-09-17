@@ -1,0 +1,24 @@
+class Solution {
+public:
+    int hammingWeight(uint32_t n) {
+        int count = 0;
+
+        while (n) {
+            n = n & (n - 1);
+            count++;
+        }
+
+        return count;
+    }
+};
+**Intuition:**  
+Use `n & (n - 1)` to remove the rightmost set bit (1).  
+Count how many times this operation can be performed.
+
+**Algorithm:**  
+Keep applying `n = n & (n - 1)` until `n` becomes 0.  
+Each operation removes one `1` bit, so the count gives the answer.
+
+**Complexity:**  
+Time: **O(k)**  
+Space: **O(1)**
