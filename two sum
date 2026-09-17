@@ -1,0 +1,28 @@
+class Solution {
+public:
+    vector<int> twoSum(vector<int>& nums, int target) {
+        unordered_map<int, int> mp;
+
+        for (int i = 0; i < nums.size(); i++) {
+            int complement = target - nums[i];
+
+            if (mp.find(complement) != mp.end())
+                return {mp[complement], i};
+
+            mp[nums[i]] = i;
+        }
+
+        return {};
+    }
+};
+**Intuition:**  
+For each element, find the value needed to reach the target.  
+Use a hash map to quickly check if that value was already seen.
+
+**Algorithm:**  
+Traverse the array and calculate `target - nums[i]`.  
+If the complement exists in the map, return both indices; otherwise store the current element.
+
+**Complexity:**  
+Time: **O(n)**  
+Space: **O(n)**
